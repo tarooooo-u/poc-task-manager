@@ -1,0 +1,32 @@
+name: Run pytest
+
+# いつこのワークフローを動かすかの設定
+on:
+  push:          # Pushされたとき
+  pull_request:  # プルリクエストが作られたとき
+
+jobs:
+  test:
+    # 実行環境（GitHubが用意するUbuntuの仮想マシン）
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. リポジトリのコードを仮想マシンにダウンロードする
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+
+      # 2. Python 3.12 をセットアップする
+      - name: Python 3.12 をセットアップ
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # 3. pytest をインストールする
+      - name: 依存パッケージをインストール
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest
+
+      # 4. テストを実行する
+      - name: pytest を実行
+        run: pytest -v
