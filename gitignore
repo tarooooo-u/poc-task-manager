@@ -11,6 +11,9 @@ env/
 # pytestのキャッシュ
 .pytest_cache/
 
+# アプリのデータファイル（各自の環境で作られるもの）
+tasks.json
+
 # エディタ・OS関連
 .vscode/
 .idea/
